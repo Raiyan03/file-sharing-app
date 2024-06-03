@@ -1,9 +1,13 @@
+"use client"
 import { UserButton } from '@clerk/nextjs'
+import { Divide, Heading1 } from 'lucide-react'
 import React from 'react'
 
 const Files = () => {
   return (
-    <UserButton afterSignOutUrl='/'/>
+    <div>
+      Files
+    </div>
   )
 }
 
