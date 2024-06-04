@@ -3,13 +3,17 @@ import UploadForm from './components/UploadForm'
 import { app } from '../../../../firebaseConfig'
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage"
 import { getFirestore } from "firebase/firestore";
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { doc, setDoc } from 'firebase/firestore';
 import { useUser } from '@clerk/nextjs';
 import {generateRandomString} from "../../../utils/GenerateRandomString"
+import { useRouter } from 'next/navigation';
 const Upload = () => {
   const { user } = useUser();
   const [progress, setProgress] = useState(0)
+  const router = useRouter();
+  const [docId, setFileDoc] = useState();
+  const [uploadCompleted, setUploadCompleted] = useState();
   const resetProgress = () => {
     setProgress(p => p = 0);
   }
@@ -41,7 +45,7 @@ const Upload = () => {
       fileName: file.name,
       fileSize: file.size,
       fileType: file.type,
-      fileType: fileUrl,
+      fileUrl: fileUrl,
       userEmail: user.primaryEmailAddress.emailAddress,
       userName:user.fullName,
       password:'',
@@ -49,7 +53,17 @@ const Upload = () => {
       shortUrl: process.env.NEXT_PUBLIC_BASE_URL+docId
     });
     console.log(data)
+    setFileDoc(docId)
+    setUploadCompleted(true)
   }
+
+  useEffect(()=> {
+    uploadCompleted &&
+    setTimeout(()=>{
+      setUploadCompleted(false);
+      router.push('/file-preview/'+docId)
+    }, 2000)
+  }, [uploadCompleted == true])
 
   return (
 
