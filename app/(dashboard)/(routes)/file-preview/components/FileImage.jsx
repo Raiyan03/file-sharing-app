@@ -1,10 +1,11 @@
-import Image from 'next/image'
+import Image from 'next/image';
 
 const FileImage = ({file}) => {
     console.log(file?.fileUrl);
     const fileName = file?.fileName;
     const fileType = file?.fileType;
     const fileUrl = file?.fileUrl;
+
 
     return (
         <div className=' flex flex-col  items-center rounded-md'>

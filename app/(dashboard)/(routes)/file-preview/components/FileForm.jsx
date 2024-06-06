@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import GlobalApi from '../../../../utils/GlobalApi'
 
 const FileForm = ({file, savePassword}) => {
     const shortUrl = file?.shortUrl;
@@ -16,9 +17,19 @@ const FileForm = ({file, savePassword}) => {
         savePassword(password, id);
     };
 
-    const handleSendEmail = () => {
-        console.log('Sending URL to email:', email);
-    };
+    const sendEmail = () => {
+        const data = {
+            emailToSend:email,
+            userName: file?.userName,
+            fileName: file.fileName,
+            fileSize: file.fileSize,
+            fileType: file.fileType,
+            fileUrl: file.fileUrl,
+        }
+        GlobalApi.SendEmail(data).then(res => {
+            console.log(res);
+        });
+    }
 
     return (
         <div className="flex flex-col p-4">
@@ -56,7 +67,7 @@ const FileForm = ({file, savePassword}) => {
                     onChange={(e) => setEmail(e.target.value)} 
                     placeholder="example@gmail.com"
                 />
-                <button className="bg-blue-500 text-white rounded-md p-1" onClick={handleSendEmail}>
+                <button className="bg-blue-500 text-white rounded-md p-1" onClick={()=>sendEmail()}>
                     Send Email
                 </button>
             </div>
