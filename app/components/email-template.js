@@ -80,7 +80,7 @@ export const EmailTemplate= ({
             <Row style={{ ...boxInfos, paddingTop: "0" }}>
                 <Column style={containerButton} colSpan={2}>
                 <Text style={{ ...paragraph, marginTop: -5 }}>
-                    {response.fileUrl}
+                    {response.shortUrl}
                 </Text>
                 </Column>
         </Row>

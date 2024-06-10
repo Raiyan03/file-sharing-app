@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "email": "email dev --dir ./app/components"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.1.3",

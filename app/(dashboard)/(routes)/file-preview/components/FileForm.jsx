@@ -25,6 +25,7 @@ const FileForm = ({file, savePassword}) => {
             fileSize: file.fileSize,
             fileType: file.fileType,
             fileUrl: file.fileUrl,
+            shortUrl: file.shortUrl
         }
         GlobalApi.SendEmail(data).then(res => {
             console.log(res);

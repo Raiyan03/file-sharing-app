@@ -2,8 +2,8 @@
 import { getFirestore, getDoc, doc } from 'firebase/firestore';
 import { app } from '../../../firebaseConfig';
 import React, { useEffect, useState } from 'react'
-import FileItem from '../_components/fileItem'
-function FieView({params}) {
+import FileItem from '../_components/FileItem';
+function FileView({params}) {
     const db = getFirestore(app);
 
     const [fileInfo, setFileInfo] = useState();
@@ -24,10 +24,10 @@ function FieView({params}) {
     }
 
     return (
-        <div>
-            <FileItem />
+        <div className=' flex min-h-screen justify-center items-center'>
+            <FileItem file={fileInfo} />
         </div>
     )
 }
 
-export default FieView
+export default FileView
