@@ -17,12 +17,6 @@ const SideNav = () => {
             icon: File,
             path:'/files'
         },
-        {
-            id:3,
-            name:'Upgrade',
-            icon: Shield,
-            path:'/upgrade'
-        },
     ]
     const [activeIndex, setActiveIndex] = useState();
   return (

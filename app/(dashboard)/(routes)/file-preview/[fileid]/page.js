@@ -6,7 +6,7 @@ import FileImage from '../components/FileImage'
 import FileForm from '../components/FileForm'
 const FilePreview = ({params}) => {
     const db = getFirestore(app);
-    const [fileInfo, setFileInfo] = useState()
+    const [fileInfo, setFileInfo] = useState();
     useEffect(()=>{
         console.log(params?.fileid);
         getFileInfo();
