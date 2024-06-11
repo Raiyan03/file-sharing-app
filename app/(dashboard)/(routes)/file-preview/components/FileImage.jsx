@@ -9,7 +9,7 @@ const FileImage = ({file}) => {
 
     return (
         <div className=' flex flex-col  items-center rounded-md'>
-            <Image src={ `/${file?.fileType}.png` || file?.fileUrl || '/file.png' } width={250} height={250} />
+            <Image src={ file?.fileType == 'application/pdf' ? `/${file?.fileType}.png` : file?.fileUrl || '/file.png' } width={250} height={250} />
             <div className='flex flex-col'>
                 <strong className=" text-lg ">
                     {fileName}
