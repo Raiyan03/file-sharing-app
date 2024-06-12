@@ -30,13 +30,16 @@ const FileForm = ({file, savePassword}) => {
             shortUrl: file.shortUrl
         }
         try{
-            GlobalApi.SendEmail(data).then(res => {
-                if (res.status == 200){
-                    toast.success('Email sent successfully')
-                } else{
-                    toast.error('Error sending email')
+            const promise = () => GlobalApi.SendEmail(data);
+            toast.promise(promise, {
+                loading: 'Sending email...',
+                success: () => {
+                    return `Email sent successfully to ${data?.emailToSend} !`
+                },
+                error: (e) => {
+                    return 'Error sending email'
                 }
-            });
+            })
         } catch(e){
             toast.error('Error sending email')
         }
