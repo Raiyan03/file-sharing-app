@@ -52,7 +52,7 @@ export const EmailTemplate= ({
                     textAlign: "center",
                   }}
                 >
-                  You&aposve have a new file shared with you
+                  You have a new file shared with you
                 </Heading>
 
                 <Text style={paragraph}>
