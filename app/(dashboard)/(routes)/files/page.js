@@ -6,7 +6,7 @@ import React, { use, useState, useEffect } from 'react'
 import { getFirestore, getDoc, getDocs, doc, updateDoc, query, collection, where } from 'firebase/firestore';
 import FileView from './components/FileView'
 
-import app from '../../../../firebaseConfig'
+import {app} from '../../../../firebaseConfig'
 
 const Files = () => {
   const db = getFirestore(app);
