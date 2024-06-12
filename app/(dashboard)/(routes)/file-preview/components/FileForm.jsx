@@ -31,11 +31,7 @@ const FileForm = ({file, savePassword}) => {
         }
         GlobalApi.SendEmail(data).then(res => {
             console.log(res);
-           if (res.status == 200){
-               toast.success('Email sent successfully')
-           } else{
-                toast.error('Error sending email')
-           }
+            toast.success('Email sent successfully');
         });
     }
 
