@@ -8,6 +8,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { useUser } from '@clerk/nextjs';
 import {generateRandomString} from "../../../utils/GenerateRandomString"
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 const Upload = () => {
   const { user } = useUser();
   const [progress, setProgress] = useState(0)
@@ -20,7 +21,6 @@ const Upload = () => {
   const storage=getStorage(app)
   const db = getFirestore(app)
   const uploadFile = async (file)=> {
-    console.log(file)
     const metadata = {
       contentType: file?.type
     }
@@ -30,11 +30,10 @@ const Upload = () => {
   (snapshot) => {
     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    console.log('Upload is ' + progress + '% done');
     setProgress(p => p = progress)
     progress==100 &&  getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-      console.log('File available at', downloadURL);
       saveInfo(file, downloadURL)
+      toast.success('File uploaded successfully');
     })
   }, )
   }
@@ -52,7 +51,6 @@ const Upload = () => {
       id:docId,
       shortUrl: process.env.NEXT_PUBLIC_BASE_URL+docId
     });
-    console.log(data)
     setFileDoc(docId)
     setUploadCompleted(true)
   }

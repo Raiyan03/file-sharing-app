@@ -2,6 +2,7 @@ import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster, toast } from 'sonner'
 const inter = Outfit({ subsets: ["latin"] });
 
 export const metadata = {
@@ -15,6 +16,7 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <body className={inter.className}>
           {children}
+          <Toaster richColors />
         </body>
       </html>
     </ClerkProvider>

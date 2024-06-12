@@ -15,7 +15,6 @@ const Files = () => {
   const Useremail = user?.primaryEmailAddress.emailAddress;
   
   useEffect(() => {
-    console.log(Useremail);
     Useremail ? getFiles(Useremail) : null;
   }, [Useremail]);
 
@@ -31,10 +30,8 @@ const Files = () => {
             data: doc.data() // Each document's data
         }));
 
-        console.log("Files for the user email:", files); // Log or handle the array of files
         setFileInfo(files);
     } catch (error) {
-        console.error("Error fetching files:", error);
         return []; // Handle the error case by returning an empty array or appropriate error handling
     }
   }

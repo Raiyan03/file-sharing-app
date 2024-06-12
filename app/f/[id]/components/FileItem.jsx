@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
+import { toast } from 'sonner';
 
 const FileItem = ({ file }) => {
     const pass = file?.password ? true : false;
@@ -11,15 +12,14 @@ const FileItem = ({ file }) => {
     };
 
     const downLoadFile = () => {
-        console.log('Downloading file');
         if (pass) {
             if (password === file.password) {
+                toast.success('Correct password');
                 window.open(url, '_blank'); // Opens the URL in a new tab
             } else {
-                alert('Incorrect password');
+                toast.error('Incorrect password');
             }
         } else {
-            console.log('No password needed');
             window.open(url, '_blank'); // Opens the URL in a new tab if no password is needed
         }
     };
@@ -28,7 +28,7 @@ const FileItem = ({ file }) => {
         <div className='flex flex-col gap-5'>
             <Image src="/download.png" width={200} height={100} alt="file" />
             <div>
-                <h1 className='text-xl'> {file.fileName} </h1>
+                <h1 className='text-xl'> {file?.fileName} </h1>
                 <p className='text-lg text-gray-500' >{file?.fileType}</p>
             </div>
             <div className='flex flex-col text-center'>

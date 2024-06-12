@@ -8,7 +8,6 @@ function FileView({params}) {
 
     const [fileInfo, setFileInfo] = useState();
     useEffect(() => {
-        console.log(params?.id)
         getFileInfo()
     }, []);
 
@@ -16,10 +15,9 @@ function FileView({params}) {
         const docRef = doc(db, "uploadedfile", params?.id);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()){
-            console.log("document data: ", docSnap.data())
             setFileInfo(docSnap.data())
         } else{
-            console.log("No such document found")
+
         }
     }
 

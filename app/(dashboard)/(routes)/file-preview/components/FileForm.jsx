@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import GlobalApi from '../../../../utils/GlobalApi'
+import { toast } from 'sonner';
 
 const FileForm = ({file, savePassword}) => {
     const shortUrl = file?.shortUrl;
@@ -7,14 +8,15 @@ const FileForm = ({file, savePassword}) => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const id = file?.id;
-
+    
     const handlePasswordChange = (event) => {
         setIsPasswordEnabled(event.target.checked);
     };
 
     const handleSavePassword = () => {
-        console.log('Password saved:', password);
         savePassword(password, id);
+        // Add toast message here
+        
     };
 
     const sendEmail = () => {
@@ -28,7 +30,7 @@ const FileForm = ({file, savePassword}) => {
             shortUrl: file.shortUrl
         }
         GlobalApi.SendEmail(data).then(res => {
-            console.log(res);
+            res.statusText === "OK" ? toast.success('Email sent successfully') : toast.error('Error sending email')
         });
     }
 

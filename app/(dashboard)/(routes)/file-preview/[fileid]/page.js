@@ -3,12 +3,12 @@ import React, { useEffect, useState } from 'react'
 import { app } from '../../../../../firebaseConfig'
 import { getFirestore, getDoc, doc, updateDoc } from 'firebase/firestore';
 import FileImage from '../components/FileImage'
+import { toast } from 'sonner'
 import FileForm from '../components/FileForm'
 const FilePreview = ({params}) => {
     const db = getFirestore(app);
     const [fileInfo, setFileInfo] = useState();
     useEffect(()=>{
-        console.log(params?.fileid);
         getFileInfo();
     }, [])
 
@@ -16,18 +16,22 @@ const FilePreview = ({params}) => {
         const docRef = doc(db, "uploadedfile", params?.fileid);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()){
-            console.log("document data: ", docSnap.data())
             setFileInfo(docSnap.data())
         } else{
-            console.log("No such document found")
         }
     }
 
     const savePassword = async (password, id)=> {
         const docRef = doc(db, "uploadedfile", id);
-        await updateDoc(docRef, {
-            password: password
-        })
+        try{
+            await updateDoc(docRef, {
+                password: password
+            })
+            toast.success(`Password saved successfully!`)
+        }
+        catch(e){
+            toast.error(`Error saving password`)
+        }
     }
 
     return (
