@@ -29,14 +29,17 @@ const FileForm = ({file, savePassword}) => {
             fileUrl: file.fileUrl,
             shortUrl: file.shortUrl
         }
-        GlobalApi.SendEmail(data).then(res => {
-            console.log(res);
-            if (res.status == 200){
-                toast.success('Email sent successfully')
-            } else{
-                toast.error('Error sending email')
-            }
-        });
+        try{
+            GlobalApi.SendEmail(data).then(res => {
+                if (res.status == 200){
+                    toast.success('Email sent successfully')
+                } else{
+                    toast.error('Error sending email')
+                }
+            });
+        } catch(e){
+            toast.error('Error sending email')
+        }
     }
 
     return (
