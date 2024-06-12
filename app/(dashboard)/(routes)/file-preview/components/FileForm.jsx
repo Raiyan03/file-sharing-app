@@ -30,7 +30,7 @@ const FileForm = ({file, savePassword}) => {
             shortUrl: file.shortUrl
         }
         GlobalApi.SendEmail(data).then(res => {
-            res.statusText === "OK" ? toast.success('Email sent successfully') : toast.error('Error sending email')
+            res.statusText == "OK" ? toast.success('Email sent successfully') : toast.error('Error sending email')
         });
     }
 
