@@ -17,7 +17,7 @@ export const EmailTemplate= ({
 }) => (
     <Html>
       <Head />
-      <Preview>Yelp recent login</Preview>
+      <Preview>You got a new file</Preview>
       <Body style={main}>
         <Container>
           <Section style={logo}>
@@ -52,29 +52,16 @@ export const EmailTemplate= ({
                     textAlign: "center",
                   }}
                 >
-                  We noticed a recent login to your Yelp account.
+                  You've have a new file shared with you
                 </Heading>
 
                 <Text style={paragraph}>
                   <b>File Name: {response.fileName}</b>
                 </Text>
-                <Text style={{ ...paragraph, marginTop: -5 }}>
-                  <b>File Size: {response.fileSize} </b>
-                </Text>
 
                 <Text style={{ ...paragraph, marginTop: -5 }}>
                   <b>File Type: {response.fileType}</b>
                 </Text>
-
-                <Text style={paragraph}>
-                  If this was you, there&apos;s nothing else you need to do.
-                </Text>
-
-                <Text style={paragraph}>
-                  If this wasn&apos;t you or if you have additional questions, please
-                  see our support page.
-                </Text>
-
 
               </Column>
             </Row>
